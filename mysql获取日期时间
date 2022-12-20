@@ -1,0 +1,14 @@
+在mysql数据库中获取日期时间的方法：
+  
+  select date_add('2022-11-01', interval row DAY) report_date from (
+    SELECT @row := @row + 1 as row FROM
+      (select 0 union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t,
+      (select 0 union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t2,
+      (SELECT @row:=-1) r
+    ) se
+  where
+  <![CDATA[
+      date_add('2022-11-15', interval row DAY) <= '2022-12-15'
+  ]]>
+
+此语句能够返回连续日期，从2022-11-15至2022-12-15所有的日期。
